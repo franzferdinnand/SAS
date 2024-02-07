@@ -13,7 +13,7 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
     birth_date = models.DateField(null=True)
     phone_number = PhoneNumberField(_("Phone Number"), max_length=16, blank=False, unique=True)
     passport_number = models.CharField(_("Passport"), max_length=20, blank=False, unique=True)
-    pesel = models.IntegerField(_("PESEL"), max_length=11, unique=True, blank=True, null=True)
+    pesel = models.IntegerField(_("PESEL"), unique=True, blank=True, null=True)
     email = models.EmailField(_("Email"), max_length=160, unique=True)
     photo = models.ImageField(_("Photo"), default="", upload_to="media/photos")
 
