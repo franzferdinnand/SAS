@@ -1,23 +1,21 @@
 from django.contrib.auth import get_user_model, login
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView, LogoutView
 from django.http import HttpResponse
 from django.shortcuts import render
-from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import reverse_lazy
 from django.utils.encoding import force_str
 from django.utils.http import urlsafe_base64_decode
-from django.views.generic import RedirectView, DetailView
+from django.views.generic import DetailView, RedirectView
 
 from core.TokenGenerator import TokenGenerator
 from user.models import UserAccount
 
 
-class UserLoginView(LoginView):
-    ...
+class UserLoginView(LoginView): ...
 
 
-class UserLogoutView(LogoutView):
-    ...
+class UserLogoutView(LogoutView): ...
 
 
 class ActivateUser(RedirectView):
@@ -41,5 +39,5 @@ class ActivateUser(RedirectView):
 
 class UserProfileView(LoginRequiredMixin, DetailView):
     model = UserAccount
-    template_name = "UserProfile.html" # TODO
+    template_name = "UserProfile.html"  # TODO
     queryset = UserAccount.objects.all()

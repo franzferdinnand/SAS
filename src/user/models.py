@@ -8,24 +8,18 @@ from core.mangers import CustomUserManager
 
 
 class UserAccount(AbstractBaseUser, PermissionsMixin):
-    first_name = models.CharField(_('First Name'), max_length=255)
-    last_name = models.CharField(_('Last Name'), max_length=255)
+    first_name = models.CharField(_("First Name"), max_length=255)
+    last_name = models.CharField(_("Last Name"), max_length=255)
     birth_date = models.DateField(null=True)
-    phone_number = PhoneNumberField(_('Phone Number'), max_length=16, blank=False, unique=True)
-    passport_number = models.CharField(_('Passport'), max_length=20, blank=False, unique=True)
-    pesel = models.IntegerField(_('PESEL'), max_length=11, unique=True, blank=True, null=True)
-    email = models.EmailField(_('Email'), max_length=160, unique=True)
-    photo = models.ImageField(_('Photo'), default='', upload_to='media/photos')
+    phone_number = PhoneNumberField(_("Phone Number"), max_length=16, blank=False, unique=True)
+    passport_number = models.CharField(_("Passport"), max_length=20, blank=False, unique=True)
+    pesel = models.IntegerField(_("PESEL"), max_length=11, unique=True, blank=True, null=True)
+    email = models.EmailField(_("Email"), max_length=160, unique=True)
+    photo = models.ImageField(_("Photo"), default="", upload_to="media/photos")
 
-    is_staff = models.BooleanField(
-        _('is staff'),
-        default=False
-    )
+    is_staff = models.BooleanField(_("is staff"), default=False)
 
-    is_active = models.BooleanField(
-        _('is active'),
-        default=True
-    )
+    is_active = models.BooleanField(_("is active"), default=True)
     USERNAME_FIELD = "passport_number"
     REQUIRED_FIELDS = []
 
@@ -52,4 +46,3 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
-

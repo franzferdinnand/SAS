@@ -13,8 +13,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name="useraccount",
             name="pesel",
-            field=models.IntegerField(
-                blank=True, max_length=11, null=True, unique=True, verbose_name="PESEL"
-            ),
+            field=models.IntegerField(blank=True, max_length=11, null=True, unique=True, verbose_name="PESEL"),
         ),
     ]
