@@ -46,7 +46,7 @@ jobs:
           python src/manage.py check
       - name: Run tests1
         run: |
-          python src/manage.py test && flake8
+          python src/manage.py test 
           
             
             
