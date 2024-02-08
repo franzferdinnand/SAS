@@ -1,9 +1,10 @@
-FROM python 3.11-bullseye
+FROM python:3.11-bullseye
 
 RUN apt update \
 && mkdir /SAS
 
 WORKDIR /SAS
+
 
 COPY src ./src
 COPY commands ./commands

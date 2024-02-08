@@ -1,6 +1,11 @@
 import os
 
+import dotenv
+
 from config.settings.base import *
+
+dotenv.load_dotenv(dotenv.find_dotenv())
+
 
 DEBUG = True
 
@@ -23,7 +28,7 @@ else:
     DATABASES = {
         "default_local": {
             "ENGINE": "django.db.backends.postgresql",
-            "NAME": "I-Logis",
+            "NAME": "SAS",
             "USER": "postgres",
             "PASSWORD": "admin",
             "HOST": "localhost",

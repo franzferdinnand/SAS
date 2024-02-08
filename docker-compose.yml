@@ -1,0 +1,67 @@
+version: "1.0"
+
+services:
+  backend:
+    build: ./
+    container_name: sas_container
+    working_dir: /SAS
+    tty: True
+    command:
+      - ./commands/start_project_${MODE}.sh
+    ports:
+      - 8010:8000
+    volumes:
+      - ./src:/SAS/src
+      - ./commands:/commands
+      - static_content:/SAS/src/static
+      - media_content:/SAS/src/static/media
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:12
+    ports:
+      - 5432:5432
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    env_file:
+      - .env
+
+  pg_admin:
+    container_name: pg_admin_container
+    image: dpage/pgadmin4
+    restart: on-failure
+    env_file:
+      - .env
+    ports:
+      - 5000:80
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    depends_on:
+      - backend
+
+  nginx:
+    container_name: nginx_container
+    image: nginx:1.19
+    volumes:
+      - static_content:/SAS/src/static/
+      - media_content:/SAS/src/static/media/
+      - ./nginx:/etc/nginx/conf.d
+    ports:
+      - 80:80
+      - 443:443
+    env_file:
+      - .env
+    depends_on:
+      - backend
+
+volumes:
+  static_content: { }
+  media_content: { }
+  pg_data: { }
+  pgadmin_data: { }
+  commands: { }
+
+
