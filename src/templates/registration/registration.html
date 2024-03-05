@@ -1,0 +1,18 @@
+{% extends 'index.html' %}
+{% block content %}
+<h1 align="center">Registration</h1>
+<hr>
+<form method="POST" style="width:25em; align-content: center; margin: auto" enctype="multipart/form-data">
+    {% load crispy_forms_tags %}
+    {% load static %}
+    {% csrf_token %}
+    {{ form|crispy }}
+    <br>
+    <button type="submit" value="Submit" class="btn btn-success">Register</button><br>
+    <br><br>
+    <a  type="button" class="btn btn-outline-dark" href='{% url "social:begin" "google-oauth2" %}'><img src="{% static 'media/google.png' %}" width="30" height="30">       Login via Google</a></li><br>
+<!--    <a  type="button" class="btn btn-outline-dark" href="{% url 'social:begin' 'github' %}"><img src="{% static 'media/github.png' %}" width="30" height="30">       Login via GitHub</a></li><br>-->
+<!--    <a  type="button" class="btn btn-outline-dark" href="{% url 'social:begin' 'linkedin-oauth2' %}"><img src="{% static 'media/linkedin.png' %}" width="30" height="30">       Login via GitHub</a></li><br>-->
+    <br><br>
+</form>
+{% endblock %}
