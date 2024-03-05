@@ -24,7 +24,6 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "phonenumber_field",
-    "social_django",
     "user",
     "core",
     "jobs",
