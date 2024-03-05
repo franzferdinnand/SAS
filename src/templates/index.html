@@ -184,12 +184,20 @@
           <li class="nav-item"><a class="nav-link" href="{% url 'core:index' %}">
             <svg class="bi" width="24" height="24"><use xlink:href="#aperture"/></svg>
           </a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Job Board</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">My Profile</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Contacts</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Reset Password</a></li>
-          <li class="nav-item"><a class="nav-link" href="{% url 'core:support' %}">Support</a></li>
-
+          {% if user.is_authenticated %}
+            <li class="nav-item"><a class="nav-link" href="{% url 'jobs:job_list' %}">Job Board</a></li>
+            {% if user.first_name %}
+              <li class="nav-item"><a class="nav-link" href="#">{{ user.first_name }}</a></li>
+            {% else %}
+              <li class="nav-item"><a class="nav-link" href="#">{{ user.passport_number }}</a></li>
+            {% endif %}
+            <li class="nav-item"><a class="nav-link" href="{% url 'core:support' %}">Support</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'core:logout' %}">Logout</a></li>
+          {% else %}
+            <li class="nav-item"><a class="nav-link" href="{% url 'core:registration' %}">Registration</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'core:login' %}">Login</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Contacts</a></li>
+          {% endif %}
           <li class="nav-item"><a class="nav-link" href="#">
             <svg class="bi" width="24" height="24"></svg>
           </a></li>

@@ -13,8 +13,8 @@ services:
     volumes:
       - ./src:/SAS/src
       - ./commands:/commands
-      - static_content:/SAS/src/static
-      - media_content:/SAS/src/static/media
+      - static_content:/SAS/static
+      - media_content:/SAS/static/media
     env_file:
       - .env
     depends_on:
@@ -46,8 +46,8 @@ services:
     container_name: nginx_container
     image: nginx:1.19
     volumes:
-      - static_content:/SAS/src/static/
-      - media_content:/SAS/src/static/media/
+      - static_content:/SAS/static/
+      - media_content:/SAS/static/media/
       - ./nginx:/etc/nginx/conf.d
     ports:
       - 80:80

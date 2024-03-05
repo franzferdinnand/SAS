@@ -8,5 +8,5 @@ class IndexView(TemplateView):
 
 
 class SupportView(TemplateView):
-    template_name = "support.html"  # TODO
+    template_name = "support.html"
     http_method_names = ["get"]

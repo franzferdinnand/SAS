@@ -5,13 +5,13 @@ from django.views.generic import DetailView, ListView
 from jobs.models import JobModel
 
 
-class JobListView(LoginRequiredMixin, ListView):
-    template_name = "jobs.html"  # TODO
+class JobListView(ListView):
+    template_name = "jobs/jobs.html"
     model = JobModel
     context_object_name = "job"
 
 
-class JobProfileView(LoginRequiredMixin, DetailView):
+class JobProfileView(DetailView):
     model = JobModel
     template_name = "JobProfile.html"  # TODO
     queryset = JobModel.objects.all()
