@@ -28,12 +28,13 @@ class UserRegistrationView(CreateView):
 
         return super().form_valid(form)
 
+
 class UserLoginView(LoginView):
     ...
 
 
 class UserLogoutView(LogoutView):
-    ...
+    template_name = 'index.html'
 
 
 class ActivateUser(RedirectView):
